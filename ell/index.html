@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="pt-BR" class="html-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ELL Express - Logística</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .html-full,
+    body,
+    .main-wrapper {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .main-wrapper {
+      width: 100%;
+      overflow-y: auto;
+      background-color: #0a0f1e;
+      color: #ffffff;
+    }
+
+    /* Header Styles */
+    .header {
+      background-color: #151b2e;
+      border-bottom: 2px solid #1e293b;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+    }
+
+    .company-name {
+      font-size: 28px;
+      font-weight: bold;
+      color: #3b82f6;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: #3b82f6;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #3b82f6;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 30px;
+      text-align: center;
+    }
+
+    .hero-title {
+      font-size: 56px;
+      font-weight: 900;
+      margin-bottom: 25px;
+      line-height: 1.2;
+      background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 22px;
+      color: #94a3b8;
+      margin-bottom: 40px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    .cta-button {
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      color: white;
+      padding: 18px 45px;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.6);
+    }
+
+    /* Stats Section */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 80px;
+      padding: 0 30px;
+    }
+
+    .stat-card {
+      background-color: #151b2e;
+      padding: 40px 30px;
+      border-radius: 15px;
+      border: 1px solid #1e293b;
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      border-color: #3b82f6;
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+    }
+
+    .stat-number {
+      font-size: 48px;
+      font-weight: 800;
+      color: #3b82f6;
+      margin-bottom: 10px;
+    }
+
+    .stat-label {
+      font-size: 16px;
+      color: #94a3b8;
+    }
+
+    /* Services Section */
+    .services-section {
+      background-color: #151b2e;
+      padding: 100px 30px;
+      margin-top: 60px;
+    }
+
+    .section-title {
+      font-size: 42px;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 60px;
+      color: #ffffff;
+    }
+
+    .services-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 35px;
+    }
+
+    .service-card {
+      background-color: #0a0f1e;
+      padding: 40px 30px;
+      border-radius: 15px;
+      border: 1px solid #1e293b;
+      transition: all 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: #3b82f6;
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+    }
+
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 25px;
+    }
+
+    .service-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #ffffff;
+    }
+
+    .service-description {
+      font-size: 16px;
+      color: #94a3b8;
+      line-height: 1.7;
+    }
+
+    /* About Section */
+    .about-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 30px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-content h2 {
+      font-size: 42px;
+      font-weight: 800;
+      margin-bottom: 25px;
+      color: #ffffff;
+    }
+
+    .about-text {
+      font-size: 18px;
+      color: #94a3b8;
+      line-height: 1.8;
+      margin-bottom: 35px;
+    }
+
+    .features-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      font-size: 16px;
+      color: #cbd5e1;
+    }
+
+    .check-icon {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .about-visual {
+      background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+      border-radius: 20px;
+      padding: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+    }
+
+    .visual-graphic {
+      width: 250px;
+      height: 250px;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      background-color: #151b2e;
+      padding: 100px 30px;
+    }
+
+    .contact-container {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-subtitle {
+      font-size: 18px;
+      color: #94a3b8;
+      margin-bottom: 50px;
+      line-height: 1.6;
+    }
+
+    .contact-form {
+      background-color: #0a0f1e;
+      padding: 50px 40px;
+      border-radius: 15px;
+      border: 1px solid #1e293b;
+      text-align: left;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #cbd5e1;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 15px 20px;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      background-color: #151b2e;
+      color: #ffffff;
+      font-size: 16px;
+      font-family: inherit;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #3b82f6;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .submit-button {
+      width: 100%;
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      color: white;
+      padding: 16px;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .submit-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
+    }
+
+    .form-message {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      display: none;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .form-message.success {
+      background-color: #10b981;
+      color: white;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: #0a0f1e;
+      padding: 30px;
+      text-align: center;
+      border-top: 1px solid #1e293b;
+    }
+
+    .footer-text {
+      font-size: 14px;
+      color: #64748b;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links {
+        gap: 20px;
+      }
+
+      .hero-title {
+        font-size: 36px;
+      }
+
+      .hero-subtitle {
+        font-size: 18px;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-section {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        font-size: 32px;
+      }
+    }
+
+    /* Animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <div class="main-wrapper"><!-- Header -->
+   <header class="header">
+    <nav class="nav-container">
+     <div class="logo-section">
+      <svg class="logo" viewbox="0 0 50 50" fill="none"><rect width="50" height="50" rx="10" fill="#3b82f6" /> <path d="M15 25L22 18L29 25L36 18" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /> <path d="M15 32L22 25L29 32L36 25" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+      </svg><span class="company-name" id="companyName">ELL Express</span>
+     </div>
+     <ul class="nav-links">
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#contato">Contato</a></li>
+     </ul>
+    </nav>
+   </header><!-- Hero Section -->
+   <section class="hero-section fade-in-up">
+    <h1 class="hero-title" id="heroTitle">Soluções Logísticas Inteligentes</h1>
+    <p class="hero-subtitle" id="heroSubtitle">Conectando seu negócio ao mundo com eficiência e segurança</p><button class="cta-button" id="ctaButton" onclick="scrollToContact()">Solicitar Orçamento</button> <!-- Stats -->
+    <div class="stats-grid">
+     <div class="stat-card">
+      <div class="stat-number">
+       15+
+      </div>
+      <div class="stat-label">
+       Anos de Experiência
+      </div>
+     </div>
+     <div class="stat-card">
+      <div class="stat-number">
+       5000+
+      </div>
+      <div class="stat-label">
+       Entregas por Mês
+      </div>
+     </div>
+     <div class="stat-card">
+      <div class="stat-number">
+       98%
+      </div>
+      <div class="stat-label">
+       Satisfação dos Clientes
+      </div>
+     </div>
+    </div>
+   </section><!-- Services Section -->
+   <section id="servicos" class="services-section">
+    <h2 class="section-title" id="servicesTitle">Nossos Serviços</h2>
+    <div class="services-grid"><!-- Service 1 -->
+     <div class="service-card">
+      <svg class="service-icon" viewbox="0 0 60 60" fill="none"><rect width="60" height="60" rx="15" fill="#3b82f6" opacity="0.2" /> <path d="M18 30L30 18L42 30M18 42L30 30L42 42" stroke="#3b82f6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <h3 class="service-title" id="service1Title">Transporte Nacional</h3>
+      <p class="service-description" id="service1Desc">Cobertura completa em todo território nacional com frota moderna e rastreamento em tempo real</p>
+     </div><!-- Service 2 -->
+     <div class="service-card">
+      <svg class="service-icon" viewbox="0 0 60 60" fill="none"><rect width="60" height="60" rx="15" fill="#3b82f6" opacity="0.2" /> <circle cx="30" cy="30" r="15" stroke="#3b82f6" stroke-width="4" /> <path d="M30 15V30L37 34" stroke="#3b82f6" stroke-width="4" stroke-linecap="round" />
+      </svg>
+      <h3 class="service-title" id="service2Title">Logística Internacional</h3>
+      <p class="service-description" id="service2Desc">Importação e exportação com toda documentação e suporte aduaneiro necessário</p>
+     </div><!-- Service 3 -->
+     <div class="service-card">
+      <svg class="service-icon" viewbox="0 0 60 60" fill="none"><rect width="60" height="60" rx="15" fill="#3b82f6" opacity="0.2" /> <rect x="15" y="20" width="30" height="25" stroke="#3b82f6" stroke-width="4" stroke-linejoin="round" /> <path d="M22 20V15H38V20" stroke="#3b82f6" stroke-width="4" stroke-linecap="round" />
+      </svg>
+      <h3 class="service-title" id="service3Title">Armazenagem</h3>
+      <p class="service-description" id="service3Desc">Centros de distribuição modernos com controle de estoque inteligente</p>
+     </div>
+    </div>
+   </section><!-- About Section -->
+   <section id="sobre" class="about-section">
+    <div class="about-content">
+     <h2 id="aboutTitle">Sobre a ELL Express</h2>
+     <p class="about-text" id="aboutText">Mais de 15 anos de experiência em logística, conectando empresas em todo o Brasil e no mundo. Nossa missão é tornar sua operação mais eficiente com tecnologia e expertise.</p>
+     <ul class="features-list">
+      <li class="feature-item">
+       <svg class="check-icon" viewbox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#3b82f6" opacity="0.2" /> <path d="M8 12L11 15L16 9" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+       </svg><span>Rastreamento em tempo real</span></li>
+      <li class="feature-item">
+       <svg class="check-icon" viewbox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#3b82f6" opacity="0.2" /> <path d="M8 12L11 15L16 9" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+       </svg><span>Seguro de cargas completo</span></li>
+      <li class="feature-item">
+       <svg class="check-icon" viewbox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#3b82f6" opacity="0.2" /> <path d="M8 12L11 15L16 9" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+       </svg><span>Suporte 24/7</span></li>
+     </ul>
+    </div>
+    <div class="about-visual">
+     <svg class="visual-graphic" viewbox="0 0 250 250" fill="none"><circle cx="125" cy="125" r="100" stroke="white" stroke-width="5" opacity="0.2" /> <path d="M75 125L112 87L150 125L187 87" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" /> <path d="M75 162L112 125L150 162L187 125" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" /> <circle cx="125" cy="125" r="118" stroke="white" stroke-width="2" stroke-dasharray="15 8" opacity="0.3" />
+     </svg>
+    </div>
+   </section><!-- Contact Section -->
+   <section id="contato" class="contact-section">
+    <div class="contact-container">
+     <h2 class="section-title" id="contactTitle">Entre em Contato</h2>
+     <p class="contact-subtitle" id="contactSubtitle">Estamos prontos para atender você e encontrar a melhor solução logística</p>
+     <form class="contact-form" id="contactForm">
+      <div class="form-group"><label for="name">Nome</label> <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-group"><label for="email">E-mail</label> <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group"><label for="message">Mensagem</label> <textarea id="message" name="message" required></textarea>
+      </div><button type="submit" class="submit-button">Enviar Mensagem</button>
+      <div class="form-message" id="formMessage"></div>
+     </form>
+    </div>
+   </section><!-- Footer -->
+   <footer class="footer">
+    <p class="footer-text" id="footerText">© 2024 ELL Express. Todos os direitos reservados.</p>
+   </footer>
+  </div>
+  <script>
+    // Default configuration
+    const defaultConfig = {
+      background_color: "#0a0f1e",
+      surface_color: "#151b2e",
+      text_color: "#ffffff",
+      primary_action_color: "#3b82f6",
+      secondary_action_color: "#94a3b8",
+      font_family: "Segoe UI",
+      font_size: 16,
+      company_name: "ELL Express",
+      hero_title: "Soluções Logísticas Inteligentes",
+      hero_subtitle: "Conectando seu negócio ao mundo com eficiência e segurança",
+      cta_button: "Solicitar Orçamento",
+      services_title: "Nossos Serviços",
+      service_1_title: "Transporte Nacional",
+      service_1_desc: "Cobertura completa em todo território nacional com frota moderna e rastreamento em tempo real",
+      service_2_title: "Logística Internacional",
+      service_2_desc: "Importação e exportação com toda documentação e suporte aduaneiro necessário",
+      service_3_title: "Armazenagem",
+      service_3_desc: "Centros de distribuição modernos com controle de estoque inteligente",
+      about_title: "Sobre a ELL Express",
+      about_text: "Mais de 15 anos de experiência em logística, conectando empresas em todo o Brasil e no mundo. Nossa missão é tornar sua operação mais eficiente com tecnologia e expertise.",
+      contact_title: "Entre em Contato",
+      contact_subtitle: "Estamos prontos para atender você e encontrar a melhor solução logística",
+      footer_text: "© 2024 ELL Express. Todos os direitos reservados."
+    };
+
+    // Scroll to contact function
+    function scrollToContact() {
+      document.getElementById('contato').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Form submission handling
+    const contactForm = document.getElementById('contactForm');
+    const formMessage = document.getElementById('formMessage');
+
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      formMessage.style.display = 'block';
+      formMessage.className = 'form-message success';
+      formMessage.textContent = 'Mensagem enviada com sucesso! Entraremos em contato em breve.';
+      
+      contactForm.reset();
+      
+      setTimeout(() => {
+        formMessage.style.display = 'none';
+      }, 5000);
+    });
+
+    // Update configuration function
+    async function onConfigChange(config) {
+      const mainWrapper = document.querySelector('.main-wrapper');
+      const baseFontSize = config.font_size || defaultConfig.font_size;
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      const bgColor = config.background_color || defaultConfig.background_color;
+      const surfaceColor = config.surface_color || defaultConfig.surface_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const primaryColor = config.primary_action_color || defaultConfig.primary_action_color;
+      const secondaryColor = config.secondary_action_color || defaultConfig.secondary_action_color;
+
+      // Update root styles
+      mainWrapper.style.backgroundColor = bgColor;
+      mainWrapper.style.color = textColor;
+      document.body.style.fontFamily = `${fontFamily}, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif`;
+      document.body.style.fontSize = `${baseFontSize}px`;
+
+      // Update CSS custom properties
+      document.documentElement.style.setProperty('--bg-color', bgColor);
+      document.documentElement.style.setProperty('--surface-color', surfaceColor);
+      document.documentElement.style.setProperty('--text-color', textColor);
+      document.documentElement.style.setProperty('--primary-color', primaryColor);
+      document.documentElement.style.setProperty('--secondary-color', secondaryColor);
+
+      // Update text content
+      document.getElementById('companyName').textContent = config.company_name || defaultConfig.company_name;
+      document.getElementById('heroTitle').textContent = config.hero_title || defaultConfig.hero_title;
+      document.getElementById('heroSubtitle').textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+      document.getElementById('ctaButton').textContent = config.cta_button || defaultConfig.cta_button;
+      document.getElementById('servicesTitle').textContent = config.services_title || defaultConfig.services_title;
+      document.getElementById('service1Title').textContent = config.service_1_title || defaultConfig.service_1_title;
+      document.getElementById('service1Desc').textContent = config.service_1_desc || defaultConfig.service_1_desc;
+      document.getElementById('service2Title').textContent = config.service_2_title || defaultConfig.service_2_title;
+      document.getElementById('service2Desc').textContent = config.service_2_desc || defaultConfig.service_2_desc;
+      document.getElementById('service3Title').textContent = config.service_3_title || defaultConfig.service_3_title;
+      document.getElementById('service3Desc').textContent = config.service_3_desc || defaultConfig.service_3_desc;
+      document.getElementById('aboutTitle').textContent = config.about_title || defaultConfig.about_title;
+      document.getElementById('aboutText').textContent = config.about_text || defaultConfig.about_text;
+      document.getElementById('contactTitle').textContent = config.contact_title || defaultConfig.contact_title;
+      document.getElementById('contactSubtitle').textContent = config.contact_subtitle || defaultConfig.contact_subtitle;
+      document.getElementById('footerText').textContent = config.footer_text || defaultConfig.footer_text;
+
+      // Update colors
+      document.querySelectorAll('.header').forEach(el => el.style.backgroundColor = surfaceColor);
+      document.querySelectorAll('.company-name').forEach(el => el.style.color = primaryColor);
+      document.querySelectorAll('.stat-card, .service-card').forEach(el => el.style.backgroundColor = surfaceColor);
+      document.querySelectorAll('.services-section, .contact-section').forEach(el => el.style.backgroundColor = surfaceColor);
+      document.querySelectorAll('.service-card').forEach(el => el.style.backgroundColor = bgColor);
+      document.querySelectorAll('.contact-form').forEach(el => el.style.backgroundColor = bgColor);
+      document.querySelectorAll('.form-group input, .form-group textarea').forEach(el => {
+        el.style.backgroundColor = surfaceColor;
+        el.style.color = textColor;
+      });
+    }
+
+    // Initialize Element SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (value) => {
+                config.background_color = value;
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            },
+            {
+              get: () => config.surface_color || defaultConfig.surface_color,
+              set: (value) => {
+                config.surface_color = value;
+                window.elementSdk.setConfig({ surface_color: value });
+              }
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => {
+                config.text_color = value;
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            },
+            {
+              get: () => config.primary_action_color || defaultConfig.primary_action_color,
+              set: (value) => {
+                config.primary_action_color = value;
+                window.elementSdk.setConfig({ primary_action_color: value });
+              }
+            },
+            {
+              get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+              set: (value) => {
+                config.secondary_action_color = value;
+                window.elementSdk.setConfig({ secondary_action_color: value });
+              }
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (value) => {
+              config.font_family = value;
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (value) => {
+              config.font_size = value;
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ["company_name", config.company_name || defaultConfig.company_name],
+          ["hero_title", config.hero_title || defaultConfig.hero_title],
+          ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+          ["cta_button", config.cta_button || defaultConfig.cta_button],
+          ["services_title", config.services_title || defaultConfig.services_title],
+          ["service_1_title", config.service_1_title || defaultConfig.service_1_title],
+          ["service_1_desc", config.service_1_desc || defaultConfig.service_1_desc],
+          ["service_2_title", config.service_2_title || defaultConfig.service_2_title],
+          ["service_2_desc", config.service_2_desc || defaultConfig.service_2_desc],
+          ["service_3_title", config.service_3_title || defaultConfig.service_3_title],
+          ["service_3_desc", config.service_3_desc || defaultConfig.service_3_desc],
+          ["about_title", config.about_title || defaultConfig.about_title],
+          ["about_text", config.about_text || defaultConfig.about_text],
+          ["contact_title", config.contact_title || defaultConfig.contact_title],
+          ["contact_subtitle", config.contact_subtitle || defaultConfig.contact_subtitle],
+          ["footer_text", config.footer_text || defaultConfig.footer_text]
+        ])
+      });
+    }
+
+    onConfigChange(defaultConfig);
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ac72b6e023f3e73',t:'MTc2NTQ3OTA0Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
