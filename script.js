@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
 
         // Número do WhatsApp de destino (substitua pelo número correto com DDD)
-        const phoneNumber = "5548999999999";
+        const phoneNumber = "5548984720082";
 
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
