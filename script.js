@@ -26,17 +26,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const route = document.getElementById('route').value;
-        const message = document.getElementById('message').value;
+        const details = document.getElementById('message').value;
 
-        // Montagem da mensagem formatada
-        const text = `*Solicitação de Cotação - Site*%0A%0A` +
-                     `*Nome/Empresa:* ${encodeURIComponent(name)}%0A` +
-                     `*E-mail:* ${encodeURIComponent(email)}%0A` +
-                     `*Rota:* ${encodeURIComponent(route)}%0A` +
-                     `*Detalhes da Carga:* ${encodeURIComponent(message)}`;
+        // Montagem da mensagem formatada com quebra de linha
+        const text = `*Solicitação de Cotação - Site*\n\n` +
+                     `*Nome/Empresa:* ${name}\n` +
+                     `*E-mail:* ${email}\n` +
+                     `*Rota:* ${route}\n` +
+                     `*Detalhes da Carga:* ${details}`;
 
-        // Redireciona para a API do WhatsApp
-        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${text}`;
+        // Codifica toda a mensagem antes de enviar ao WhatsApp
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
         window.open(whatsappUrl, '_blank');
     });
 });
